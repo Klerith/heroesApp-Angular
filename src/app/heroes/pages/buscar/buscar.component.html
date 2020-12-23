@@ -5,7 +5,8 @@
         <h1>Buscador de Héroes</h1>
         <mat-divider></mat-divider>
     </div>
-    <div>
+    
+    <div fxLayout="column">
         <h3>Buscador</h3>
 
         <mat-form-field>
@@ -20,11 +21,18 @@
             <mat-autocomplete autoActiveFirstOption 
                               #auto="matAutocomplete"
                               (optionSelected)="opcionSeleccionada( $event )">
+
               <mat-option *ngFor="let heroe of heroes" [value]="heroe">
                 {{ heroe.superhero }}
               </mat-option>
-            </mat-autocomplete>
 
+              <mat-option value="" *ngIf="heroes.length === 0 && termino.trim().length > 0">
+                No se encontró nada con el término {{ termino }}
+              </mat-option>
+              
+
+            </mat-autocomplete>
+        
 
         </mat-form-field>
 
