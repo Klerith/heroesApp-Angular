@@ -1,1 +1,42 @@
-<p>buscar works!</p>
+
+
+<div fxLayout="column">
+    <div>
+        <h1>Buscador de Héroes</h1>
+        <mat-divider></mat-divider>
+    </div>
+    <div>
+        <h3>Buscador</h3>
+
+        <mat-form-field>
+            <input type="text"
+                   placeholder="Pick one"
+                   aria-label="Number"
+                   matInput
+                   [(ngModel)]="termino"
+                   [matAutocomplete]="auto"
+                   (input)="buscando()">
+
+            <mat-autocomplete autoActiveFirstOption 
+                              #auto="matAutocomplete"
+                              (optionSelected)="opcionSeleccionada( $event )">
+              <mat-option *ngFor="let heroe of heroes" [value]="heroe">
+                {{ heroe.superhero }}
+              </mat-option>
+            </mat-autocomplete>
+
+
+        </mat-form-field>
+
+
+
+    </div>
+
+    <div>
+        <pre>{{ heroeSeleccionado | json }}</pre>
+    </div>
+
+</div>
+
+
+
